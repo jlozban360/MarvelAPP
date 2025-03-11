@@ -7,7 +7,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.iesoretania.marvelapp.ui.screens.CharacterDetailScreen
 import com.iesoretania.marvelapp.ui.screens.CharacterListScreen
 import com.iesoretania.marvelapp.viewmodels.MarvelViewModel
@@ -42,7 +41,8 @@ fun MarvelApp() {
             val character = viewModel.state.value.characters.find { it.id == characterId }
 
             character?.let {
-                CharacterDetailScreen(character = it)
+                // Asegúrate de pasar también el navController aquí
+                CharacterDetailScreen(character = it, navController = navController)
             }
         }
     }
