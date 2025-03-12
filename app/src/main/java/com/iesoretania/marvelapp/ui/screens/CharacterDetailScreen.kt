@@ -1,19 +1,23 @@
 package com.iesoretania.marvelapp.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.iesoretania.marvelapp.api.MarvelCharacter
 
@@ -30,7 +34,7 @@ fun CharacterDetailScreen(
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Volver"
                         )
                     }
@@ -48,7 +52,7 @@ fun CharacterDetailScreen(
         ) {
             // Imagen del personaje
             Image(
-                painter = rememberImagePainter(character.thumbnail.getFullImagePath()),
+                painter = rememberAsyncImagePainter(character.thumbnail.getFullImagePath()),
                 contentDescription = null,
                 modifier = Modifier
                     .size(200.dp)
@@ -60,14 +64,14 @@ fun CharacterDetailScreen(
 
             // Descripción del personaje
             Text(
-                text = character.description.ifEmpty { "No description available" },
+                text = character.description.ifEmpty { "Ninguna descripción disponible." },
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Justify
             )
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Botón para volver a la pantalla principal
+            // Botón para volver al inicio
             Button(
                 onClick = {
                     // Navega a la ruta "list" y limpia el backstack si es necesario
@@ -76,8 +80,14 @@ fun CharacterDetailScreen(
                     }
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
+                    //.fillMaxWidth()
                     .padding(horizontal = 8.dp)
+                    .width(150.dp)
+                    .height(48.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Red,  // Color del fondo
+                    contentColor = Color.White   // Color del texto
+                )
             ) {
                 Text("Volver al inicio")
             }
