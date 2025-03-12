@@ -1,6 +1,7 @@
 package com.iesoretania.marvelapp.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,11 +33,12 @@ fun SearchBar(
             onSearch(it)
         },
         placeholder = {
-            Text("Search Marvel characters...", style = MaterialTheme.typography.bodyMedium)
+            Text("Busca tu personaje de Marvel favorito...", style = MaterialTheme.typography.bodyMedium)
         },
         modifier = modifier
             .fillMaxWidth()
-            .statusBarsPadding() // Agrega padding dinámico según la altura de la barra de estado
+            .height(100.dp)
+            .statusBarsPadding()
             .padding(8.dp),
         singleLine = true
     )
