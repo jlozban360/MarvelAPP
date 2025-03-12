@@ -41,7 +41,6 @@ fun MarvelApp() {
             val character = viewModel.state.value.characters.find { it.id == characterId }
 
             character?.let {
-                // Asegúrate de pasar también el navController aquí
                 CharacterDetailScreen(character = it, navController = navController)
             }
         }
